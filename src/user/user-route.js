@@ -5,11 +5,12 @@ const auth = require("./user-middleware.js");
 const router = express.Router();
 
 router.post("/register", auth.validateUser, (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, department } = req.body;
 
   const data = {
-    username: username,
-    password: auth.myBcrypt(password, 10)
+    username,
+    password: auth.myBcrypt(password, 10),
+    department
   };
   db.createUser(data)
     .then(dbResponse => {
@@ -39,7 +40,7 @@ router.post(
   auth.validateUser,
   auth.validateUserPassword,
   (req, res) => {
-    res.status(200).json({message: 'Welcome'})
+    res.status(200).json({ message: "Welcome" });
   }
 );
 

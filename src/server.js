@@ -1,9 +1,10 @@
 const express = require("express");
-const userRoute = require("./user/user-router");
+const userRoute = require("./user/user-route");
 const server = express();
 const cors = require("cors");
 const session = require("express-session");
 const KnexSessionStore = require("connect-session-knex")(session);
+require('dotenv').config()
 
 server.use(express.json());
 server.use(logger);
